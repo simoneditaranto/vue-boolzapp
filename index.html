@@ -15,9 +15,11 @@
     </head>
 
     <body>
+        <!-- VUE -->
+        <script src="https://unpkg.com/vue@3"></script>
 
         <!-- container principale -->
-        <div class="container">
+        <div id="app" class="container">
 
             <!-- sezione contatti (sinistra) -->
             <div id="left-container">
@@ -67,11 +69,13 @@
                 <!-- lista dei contatti -->
                 <div class="contact-list">
 
-                    <div class="contact">
-
-                        <img src="./img/avatar_1.jpg" alt="">
+                    <div 
+                    v-for="currentContact in contacts"
+                    class="contact"
+                    >
+                        <img :src=currentContact.avatar alt="">
                         <div class="contact-info">
-                            <span class="name">Michele</span>
+                            <span class="name">{{currentContact.name}}</span>
                             <span class="last-message">Ultimo messaggio inviato</span>
                         </div>
 
@@ -143,6 +147,8 @@
             
         </div>
 
+
+        <script src="./js/script.js"></script>
         
     </body>
 
