@@ -119,6 +119,51 @@
 
     border: 1px solid #B1B1B1;
 }
+
+#left-container .contact-list{
+    background-color: white;
+}
+
+.contact-list .contact{
+    display: flex;
+    gap: 20px;
+
+    position: relative;
+
+    padding: 10px 20px;
+
+    border-top: 1px solid #B1B1B1;
+    border-bottom: 1px solid #B1B1B1;
+}
+
+.contact-list .contact img{
+    width: 60px;
+    height: 60px;
+
+    border-radius: 50%;
+}
+
+.contact-list .contact .contact-info{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    padding: 5px 0;
+}
+
+.contact-list .contact .contact-info .last-message{
+    color: #B4BECA;
+}
+
+.contact-list .contact .message-time{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    font-size: 10px;
+
+    color: #B4BECA;
+}
 /* fine sezione "left-container" */
 
 
