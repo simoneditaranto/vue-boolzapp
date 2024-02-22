@@ -204,9 +204,43 @@
 }
 
 #right-container #chat-container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
     flex-grow: 1;
 
+    padding: 70px;
+
     background-image: url('../img/mine.jpg');
+}
+
+#chat-container .message-text{
+    position: relative;
+
+    padding: 15px 10px;
+
+    width: 40%;
+
+    border-radius: 10px;
+
+    background-color: white;
+}
+
+#chat-container .message-text.send{
+    align-self: flex-end;
+
+    background-color: #D5F9BA;
+}
+
+#chat-container .message-text .message-time{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+
+    font-size: 10px;
+
+    color: #979D9E;
 }
 
 #right-container #send-message {
