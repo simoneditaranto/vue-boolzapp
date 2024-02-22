@@ -69,6 +69,8 @@ body{
     width: 400px;
 
     border-right: 1px solid #B1B1B1;
+
+    overflow: hidden;
 }
 
 #left-container #notifications{    
@@ -140,6 +142,8 @@ body{
     flex-grow: 1;
 
     background-color: white;
+
+    overflow-y: auto;
 }
 
 .contact-list .contact{
@@ -152,6 +156,10 @@ body{
 
     border-top: 1px solid #B1B1B1;
     border-bottom: 1px solid #B1B1B1;
+}
+
+.contact-list .contact:hover{
+    background-color: #E9EBEB;
 }
 
 .contact-list .contact img{
@@ -230,7 +238,7 @@ body{
     border-radius: 10px;
 }
 
-#chat-container .message-text.send{
+#chat-container .message-text.sent{
     align-self: flex-end;
 
     background-color: #D5F9BA;
