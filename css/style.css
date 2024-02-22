@@ -25,6 +25,24 @@
 
     width: 400px;
 }
+
+.header-contact{
+    height: 70px;
+    background-color: #EAEAEA;
+    /* test */
+}
+
+#left-container #notifications{
+    height: 80px;
+    background-color: #8EDAFC;
+    /* test */
+}
+
+#left-container #search-contact{
+    height: 50px;
+    background-color: white;
+    /* test */
+}
 /* fine sezione "left-container" */
 
 
