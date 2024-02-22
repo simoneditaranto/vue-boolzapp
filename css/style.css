@@ -5,16 +5,24 @@
 }
 /* reset */
 
+#header-back{
+    height: 150px;
+
+    background-color: #009688;
+}
+
 /* container principale */
 .container{
     height: 80vh;
-    margin: 50px auto 0;
     /* test */
+    
+    margin: auto ;
 
     display: flex;
 
     max-width: 1200px;
 
+    translate: 0 -100px;
 }
 /* container principale */
 
@@ -23,6 +31,8 @@
 
 body{
     background-color: #D7DBD7;
+
+    font-family: sans-serif;
 }
 
 /* header */
@@ -226,6 +236,8 @@ body{
     padding: 70px;
 
     background-image: url('../img/mine.jpg');
+
+    overflow-y: auto;
 }
 
 #chat-container .message-text{

@@ -178,6 +178,9 @@ createApp({
 
             // memorizzo in una variabile booleana se un messaggio è stato inviato o meno
             sentNewMessage: false,
+
+            // memorizzo in una variabile la stringa che scrive l'utente per cercare un contatto
+            searchContact: '',
         }
 
 
@@ -234,10 +237,30 @@ createApp({
             }
         },
 
+        // metodo che visualizza la lista del nome dei contatti cercata dall'utente
+        showContact(stringName) {
+   
+                this.searchContact = stringName;
+                // console.log("1", this.searchContact)
+                for(current in this.contacts) {
+                    if(!this.contacts[current].name.includes(this.searchContact)) {
+                        // console.log(this.contacts[current].name)
+                        this.contacts[current].visible = false;
+                    } else {
+                        console.log("sono qui")
+                        this.contacts[current].visible = true;
+                    }
+                }
+    
+                this.searchContact = '';
+
+        },
+
+
     },
 
     mounted() {
-
+        // allo start della pagina, viene visualizzato il primo elemento della lista dei contatti
         this.indexNumber(0);
 
     },

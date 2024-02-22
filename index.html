@@ -18,6 +18,8 @@
         <!-- VUE -->
         <script src="https://unpkg.com/vue@3"></script>
 
+        <div id="header-back"></div>
+
         <!-- container principale -->
         <div id="app" class="container">
 
@@ -59,8 +61,13 @@
 
                     <div id="search-container">
 
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" placeholder="Cerca o inizia una nuova chat">
+                        <i class="fa-solid fa-magnifying-glass"
+                        @click="showContact(searchContact)"
+                        ></i>
+                        <input type="text" 
+                        placeholder="Cerca o inizia una nuova chat"
+                        v-model="searchContact"
+                        >
 
                     </div>
 
@@ -71,6 +78,7 @@
 
                     <div 
                     v-for="(currentContact, index) in contacts"
+                    v-show="contacts[index].visible"
                     class="contact"
                     @click="indexNumber(index)"
                     >
