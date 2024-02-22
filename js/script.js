@@ -171,28 +171,10 @@ createApp({
             ],
 
             // memorizzo in una variabile il contatto attuale
-            currentElement: {
-                name: 'Michele',
-                avatar: './img/avatar_1.jpg',
-                visible: true,
-                messages: [
-                    {
-                        date: '10/01/2020 15:30:55',
-                        message: 'Hai portato a spasso il cane?',
-                        status: 'sent'
-                    },
-                    {
-                        date: '10/01/2020 15:50:00',
-                        message: 'Ricordati di stendere i panni',
-                        status: 'sent'
-                    },
-                    {
-                        date: '10/01/2020 16:15:22',
-                        message: 'Tutto fatto!',
-                        status: 'received'
-                    }
-                ],
-            },
+            currentIndexElement: 0,
+
+            // memorizzo in una variabile il messaggio scritto dall'utente
+            newChatMessage: '',
         }
 
 
@@ -201,21 +183,37 @@ createApp({
 
     methods: {
 
-
-        indexNumber(currendContact) {
+        // metodo che mi restituisce l'indice dell'elemento corrente
+        indexNumber(index) {
             
-            this.currentElement = currendContact;
-
+            this.currentIndexElement = index;
+            
         },
 
-        // getMessageTime(date) {
-        //     console.log(date)
-        //     const newDate = date.split();
-        //     console.log(newDate)
-            
+        // metodo per creare un nuovo messaggio
+        createNewMessage(message) {
+            if(message.trim() != 0){
+            const actualDate = new Date().toUTCString();
 
-        // }
+            // creo un oggetto di tipo messaggio
+            this.newChatMessage = {
+                date: actualDate,
+                message: message,
+                status: 'sent',
+            }
 
-    }
+            this.contacts[this.currentIndexElement].messages.push(this.newChatMessage);
+
+            this.newChatMessage = '';
+            }
+        }
+
+    },
+
+    mounted() {
+
+        this.indexNumber(0);
+
+    },
 
 }).mount("#app");
