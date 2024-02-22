@@ -92,10 +92,32 @@
     text-decoration: underline;
 }
 
-#left-container #search-contact{
-    height: 50px;
+#left-container #search-contact{    
+    padding: 10px;
+
+    background-color: #FAFAFA;
+}
+
+#search-contact #search-container{
+    display: flex;
+
     background-color: white;
-    /* test */
+}
+
+#search-container i{
+    padding: 6px 25px;
+
+    border: 1px solid #B1B1B1;
+
+    color: #B1B1B1;
+}
+
+#search-container input{
+    padding: 0 10px;
+
+    width: 100%;
+
+    border: 1px solid #B1B1B1;
 }
 /* fine sezione "left-container" */
 
