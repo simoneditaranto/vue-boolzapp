@@ -26,10 +26,34 @@
     width: 400px;
 }
 
-.header-contact{
-    height: 70px;
+#left-container .header-user{
     background-color: #EAEAEA;
     /* test */
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px;
+}
+
+.header-user .user{
+    display: flex;
+    align-items: center;
+}
+
+.header-user .user img{
+    width: 50px;
+    height: 50px;
+
+    border-radius: 50%;
+}
+
+.header-user .settings{
+    display: flex;
+    gap: 15px;
+
+    color: #B1B1B1;
 }
 
 #left-container #notifications{
@@ -38,7 +62,7 @@
     /* test */
 }
 
-#left-container #search-contact{
+#left-container #search-user{
     height: 50px;
     background-color: white;
     /* test */
