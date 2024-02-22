@@ -4,3 +4,37 @@
     box-sizing: border-box;
 }
 /* reset */
+
+.container{
+    height: 80vh;
+    margin: 50px auto 0;
+    /* test */
+
+    display: flex;
+
+    max-width: 1200px;
+
+}
+
+
+/* sezione "left-container" */
+#left-container{
+    background-color: rgba(255, 0, 0, 0.3);
+    height: 100%;
+    /* test */
+
+    width: 400px;
+}
+/* fine sezione "left-container" */
+
+
+/* sezione "right-container" */
+#right-container{
+    background-color: rgba(0, 0, 255, 0.3);
+    height: 100%;
+    /* test */
+
+    width: calc(100% - 400px);
+}
+/* fine sezione "right-container" */
+
