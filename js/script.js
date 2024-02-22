@@ -175,6 +175,9 @@ createApp({
 
             // memorizzo in una variabile il messaggio scritto dall'utente
             newChatMessage: '',
+
+            // memorizzo in una variabile booleana se un messaggio è stato inviato o meno
+            sentNewMessage: false,
         }
 
 
@@ -193,20 +196,43 @@ createApp({
         // metodo per creare un nuovo messaggio
         createNewMessage(message) {
             if(message.trim() != 0){
-            const actualDate = new Date().toUTCString();
+                const actualDate = new Date().toUTCString();
 
-            // creo un oggetto di tipo messaggio
-            this.newChatMessage = {
-                date: actualDate,
-                message: message,
-                status: 'sent',
+                // creo un oggetto di tipo messaggio
+                this.newChatMessage = {
+                    date: actualDate,
+                    message: message,
+                    status: 'sent',
+                }
+
+                this.contacts[this.currentIndexElement].messages.push(this.newChatMessage);
+
+                this.sentNewMessage = true;
+                
+                this.newChatMessage = '';
             }
+        },
 
-            this.contacts[this.currentIndexElement].messages.push(this.newChatMessage);
+        // metodo che genera una risposta
+        createAnswerMessage() {
+            if(this.sentNewMessage) {
+                setTimeout(() => {
 
-            this.newChatMessage = '';
+                    const actualDate = new Date().toUTCString();
+    
+                    this.newChatMessage = {
+                        date: actualDate,
+                        message: 'ok',
+                        status: 'received',
+                    }
+    
+                    this.contacts[this.currentIndexElement].messages.push(this.newChatMessage);
+    
+                    this.newChatMessage = '';
+
+                }, 1000)
             }
-        }
+        },
 
     },
 
