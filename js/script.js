@@ -2,7 +2,7 @@ const {createApp} = Vue;
 
 createApp({
     data() {
-
+        
         return {
 
             // definisco il mio array dei contatti
@@ -184,6 +184,7 @@ createApp({
 
             // creo un variabile che mi indica l'indice del messaggio a su cui voglio mostrare la finestrina delle impostazioni
             indexMessageElement: -1,
+
         }
 
 
@@ -221,6 +222,7 @@ createApp({
 
         // metodo che genera una risposta
         createAnswerMessage() {
+            let index = this.currentIndexElement;
             if(this.sentNewMessage) {
                 setTimeout(() => {
 
@@ -232,7 +234,7 @@ createApp({
                         status: 'received',
                     }
     
-                    this.contacts[this.currentIndexElement].messages.push(this.newChatMessage);
+                    this.contacts[index].messages.push(this.newChatMessage);
     
                     this.newChatMessage = '';
 
@@ -280,3 +282,4 @@ createApp({
 
 
 }).mount("#app");
+
