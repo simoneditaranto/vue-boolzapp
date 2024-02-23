@@ -87,11 +87,17 @@
                         <img :src=contacts[index].avatar :alt=contacts[index].name>
                         <div class="contact-info">
                             <span class="name">{{currentContact.name}}</span>
-                            <span class="last-message">Ultimo messaggio inviato</span>
+                            <span class="last-message">
+                                {{ 
+                                    currentContact.messages[currentContact.messages.length - 1].message 
+                                }}
+                            </span>
                         </div>
 
                         <div class="message-time">
-                            12.00
+                            {{
+                                currentContact.messages[currentContact.messages.length - 1].date 
+                            }}
                         </div>
 
                     </div>
