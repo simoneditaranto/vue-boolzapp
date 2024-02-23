@@ -129,14 +129,37 @@
                     <div id="messages-container">
 
                         <div 
-                        v-for="currentMessage in contacts[currentIndexElement].messages"
-                        class="message-text"
-                        :class="currentMessage.status"
+                            v-for="(currentMessage, index) in contacts[currentIndexElement].messages"
+                            class="message-text"
+                            :class="currentMessage.status"
                         >
                             {{currentMessage.message}}
                             <span class="message-time">
                                 {{currentMessage.date}}
                             </span>
+
+                            <i 
+                                class="fa-solid fa-chevron-down"
+                                @click="showInfoMessage(index)"
+                            ></i>
+                           
+                            <div 
+                                class="message-panel"
+                                v-show="index == indexMessageElement"
+                            >
+                                
+                                <div class="message-info">
+                                    Info messaggio
+                                </div>
+
+                                <div 
+                                    class="delete-message"
+                                    @click="deleteMessage(index)"
+                                    >
+                                    Elimina messaggio
+                                </div>
+
+                            </div>
                         </div>
 
                     </div>

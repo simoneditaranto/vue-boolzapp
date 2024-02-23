@@ -232,6 +232,7 @@ body{
     color: #979D9E;
 }
 
+/* contenitore chat */
 #right-container #chat-container{
     flex-grow: 1;
 
@@ -284,6 +285,49 @@ body{
 
     color: #979D9E;
 }
+
+#messages-container .message-text i{
+    display: none;
+
+    position: absolute;
+    right: 10px;
+    top: 10px;
+
+    cursor: pointer;
+}
+
+#messages-container .message-text:hover i {
+    display: inline-block;
+}
+
+#messages-container .message-text .message-panel{
+    position: absolute;
+    right: 10px;
+    top: 40px;
+
+    padding: 15px;
+
+    background-color: white;
+
+    cursor: pointer;
+
+    z-index: 1;
+}
+
+
+#messages-container .message-text .message-panel div:first-of-type{
+    margin-bottom: 5px;
+}
+
+#messages-container .message-text .message-panel .message-info:hover{
+    background-color: rgb(187, 185, 185);
+}
+
+#messages-container .message-text .message-panel .delete-message:hover{
+    background-color: rgb(255, 21, 21);
+}
+/* fine contenitore chat */
+
 
 #right-container #send-message {
     display: flex;

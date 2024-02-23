@@ -181,6 +181,9 @@ createApp({
 
             // memorizzo in una variabile la stringa che scrive l'utente per cercare un contatto
             searchContact: '',
+
+            // creo un variabile che mi indica l'indice del messaggio a su cui voglio mostrare la finestrina delle impostazioni
+            indexMessageElement: -1,
         }
 
 
@@ -241,7 +244,7 @@ createApp({
         showContact() {
 
             this.contacts.forEach(currentContact => {
-                
+
                 if(currentContact.name.toLowerCase().includes(this.searchContact.toLowerCase())) {
                     currentContact.visible = true;
                 } else {
@@ -250,6 +253,19 @@ createApp({
 
             })
 
+        },
+
+        // metodo che mi fa mostrare o meno la finestra delle impostazione dei messaggi
+        showInfoMessage(index) {
+
+            this.indexMessageElement == index ? this.indexMessageElement = -1 : this.indexMessageElement = index;
+
+        },
+
+        // metodo che elminia il messaggio selezionato
+        deleteMessage(index) {
+            this.contacts[this.currentIndexElement].messages.splice(index, 1);
+            this.indexMessageElement = -1;
         }
 
 
