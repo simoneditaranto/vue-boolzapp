@@ -62,11 +62,12 @@
                     <div id="search-container">
 
                         <i class="fa-solid fa-magnifying-glass"
-                        @click="showContact(searchContact)"
+                       
                         ></i>
                         <input type="text" 
                         placeholder="Cerca o inizia una nuova chat"
                         v-model="searchContact"
+                        @keyup="showContact"
                         >
 
                     </div>
@@ -77,9 +78,10 @@
                 <div class="contact-list">
 
                     <div 
-                    v-for="(currentContact, index) in contacts"
-                    v-show="contacts[index].visible"
+                    v-for="(currentContact, index) in contacts" 
+                    v-show="currentContact.visible"           
                     class="contact"
+                    :class="currentIndexElement == index ? 'active' : ''"
                     @click="indexNumber(index)"
                     >
                         <img :src=contacts[index].avatar :alt=contacts[index].name>
@@ -124,15 +126,19 @@
                 <!-- chat -->
                 <div id="chat-container">
 
-                    <div 
-                    v-for="currentMessage in contacts[currentIndexElement].messages"
-                    class="message-text"
-                    :class="currentMessage.status"
-                    >
-                        {{currentMessage.message}}
-                        <span class="message-time">
-                            {{currentMessage.date}}
-                        </span>
+                    <div id="messages-container">
+
+                        <div 
+                        v-for="currentMessage in contacts[currentIndexElement].messages"
+                        class="message-text"
+                        :class="currentMessage.status"
+                        >
+                            {{currentMessage.message}}
+                            <span class="message-time">
+                                {{currentMessage.date}}
+                            </span>
+                        </div>
+
                     </div>
 
                 </div>

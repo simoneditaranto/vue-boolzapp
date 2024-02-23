@@ -166,10 +166,16 @@ body{
 
     border-top: 1px solid #B1B1B1;
     border-bottom: 1px solid #B1B1B1;
+
+    cursor: pointer;
+}
+
+.contact-list .contact.active{
+    background-color: #919292;
 }
 
 .contact-list .contact:hover{
-    background-color: #E9EBEB;
+    background-color: #868686;
 }
 
 .contact-list .contact img{
@@ -227,21 +233,28 @@ body{
 }
 
 #right-container #chat-container{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
     flex-grow: 1;
-
-    padding: 70px;
 
     background-image: url('../img/mine.jpg');
 
     overflow-y: auto;
 }
 
-#chat-container .message-text{
+#chat-container #messages-container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    padding: 50px 0;
+    margin: 0 auto;
+
+    max-width: 700px;
+}
+
+#messages-container .message-text{
     position: relative;
+
+    display: flex;
 
     padding: 15px 10px;
 
@@ -250,19 +263,19 @@ body{
     border-radius: 10px;
 }
 
-#chat-container .message-text.sent{
+#messages-container .message-text.sent{
     align-self: flex-end;
 
     background-color: #D5F9BA;
 }
 
-#chat-container .message-text.received{
+#messages-container .message-text.received{
     align-self: flex-start;
 
     background-color: white;
 }
 
-#chat-container .message-text .message-time{
+#messages-container .message-text .message-time{
     position: absolute;
     bottom: 5px;
     right: 5px;

@@ -237,24 +237,21 @@ createApp({
             }
         },
 
-        // metodo che visualizza la lista del nome dei contatti cercata dall'utente
-        showContact(stringName) {
-   
-                this.searchContact = stringName;
-                // console.log("1", this.searchContact)
-                for(current in this.contacts) {
-                    if(!this.contacts[current].name.includes(this.searchContact)) {
-                        // console.log(this.contacts[current].name)
-                        this.contacts[current].visible = false;
-                    } else {
-                        console.log("sono qui")
-                        this.contacts[current].visible = true;
-                    }
-                }
-    
-                this.searchContact = '';
+        // metodo che cambia il valore di "visible" a seconda di quello che l'utente scrive nella barra di ricerca
+        showContact() {
 
-        },
+            this.contacts.forEach(currentContact => {
+                
+                if(currentContact.name.toLowerCase().includes(this.searchContact.toLowerCase())) {
+                    currentContact.visible = true;
+                } else {
+                    currentContact.visible = false;
+                }
+
+            })
+
+        }
+
 
 
     },
@@ -264,5 +261,6 @@ createApp({
         this.indexNumber(0);
 
     },
+
 
 }).mount("#app");
