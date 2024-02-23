@@ -17,6 +17,8 @@
     <body>
         <!-- VUE -->
         <script src="https://unpkg.com/vue@3"></script>
+        <!-- luxon -->
+        <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
 
         <div id="header-back"></div>
 
@@ -96,7 +98,7 @@
 
                         <div class="message-time">
                             {{
-                                currentContact.messages[currentContact.messages.length - 1].date 
+                                `${currentContact.messages[currentContact. messages.length - 1].date.hour}:${currentContact.messages[currentContact. messages.length - 1].date.minute < 10 ? '0' : ''}${currentContact.messages[currentContact. messages.length - 1].date.minute}`
                             }}
                         </div>
 
@@ -141,7 +143,9 @@
                         >
                             {{currentMessage.message}}
                             <span class="message-time">
-                                {{currentMessage.date}}
+                                {{
+                                    `${currentMessage.date.hour}:${currentMessage.date.minute < 10 ? '0' : ''}${currentMessage.date.minute}`
+                                }}
                             </span>
 
                             <i 
@@ -190,12 +194,11 @@
             
         </div>
 
+
+
         <!-- js -->
         <script src="./js/script.js"></script>
 
-        <!-- luxon -->
-        <!-- <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script> -->
-        
     </body>
 
 </html>

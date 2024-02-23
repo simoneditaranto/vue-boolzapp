@@ -1,4 +1,5 @@
 const {createApp} = Vue;
+const {DateTime} = luxon;
 
 createApp({
     data() {
@@ -185,6 +186,8 @@ createApp({
             // creo un variabile che mi indica l'indice del messaggio a su cui voglio mostrare la finestrina delle impostazioni
             indexMessageElement: -1,
 
+            
+
         }
 
 
@@ -203,7 +206,9 @@ createApp({
         // metodo per creare un nuovo messaggio
         createNewMessage(message) {
             if(message.trim() != 0){
-                const actualDate = new Date().toUTCString();
+
+                const actualDate = DateTime.now();
+                console.log(actualDate)
 
                 // creo un oggetto di tipo messaggio
                 this.newChatMessage = {
@@ -226,7 +231,8 @@ createApp({
             if(this.sentNewMessage) {
                 setTimeout(() => {
 
-                    const actualDate = new Date().toUTCString();
+                    const actualDate = DateTime.now();
+                    console.log(actualDate)
     
                     this.newChatMessage = {
                         date: actualDate,
@@ -278,8 +284,16 @@ createApp({
         // allo start della pagina, viene visualizzato il primo elemento della lista dei contatti
         this.indexNumber(0);
 
+
+        this.contacts.forEach(current => {
+            current.messages.forEach(currentMessage => {
+                currentMessage.date = DateTime.fromFormat(currentMessage.date, "dd/MM/yyyy HH:mm:ss");
+                // console.log(currentMessage.date.hour)
+            })
+        })
+
+
     },
 
 
 }).mount("#app");
-
