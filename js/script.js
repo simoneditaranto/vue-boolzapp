@@ -273,18 +273,8 @@ createApp({
 
         // metodo che mi fa mostrare o meno la finestra delle impostazioni dei messaggi
         showInfoMessage(index) {
-            let i = this.currentIndexElement;
             
-            if(this.contacts[i].messages.indexOf(this.contacts[i].messages[this.indexMessageElement]) != index && i == this.currentIndexElement) {
-                this.indexMessageElement = index;
-                i = -1;
-            } else if(this.indexMessageElement == index) {
-                this.indexMessageElement = -1;
-            }
-            // this.contacts[i].messages.indexOf(this.contacts[i].messages[this.indexMessageElement]) == index ? this.indexMessageElement = -1 : this.indexMessageElement = index;
-            // this.contacts[i].messages.indexOf(this.contacts[i].messages[this.indexMessageElement]);
-            // console.log("1", this.contacts[i].messages.indexOf(this.contacts[i].messages[this.indexMessageElement]))
-            // console.log("2", index)
+            this.indexMessageElement == index ? this.indexMessageElement = -1 : this.indexMessageElement = index;
 
         },
 

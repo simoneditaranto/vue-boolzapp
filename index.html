@@ -93,6 +93,7 @@
                                 class="last-message"
                             >
                                 {{
+                                    <!-- se non ci sono più messaggi nella chat, mostra la proprietà "stage" (stato del contatto) -->
                                     currentContact.messages.length > 0 ?
                                     currentContact.messages[currentContact.messages.length - 1].message : currentContact.stage
                                 }}
@@ -103,6 +104,7 @@
                             class="message-time"
                             v-if="currentContact.messages.length > 0"
                             >
+                            <!-- "v-if": se non ci sono più messaggi in chat, non mostrare niente -->
                             {{
                                 `${currentContact.messages[currentContact. messages.length - 1].date.hour}:${currentContact.messages[currentContact. messages.length - 1].date.minute < 10 ? '0' : ''}${currentContact.messages[currentContact. messages.length - 1].date.minute}`
                             }}
@@ -164,7 +166,7 @@
                            
                             <div 
                                 class="message-panel"
-                                v-show="index == indexMessageElement"
+                                v-show="currentMessage == contacts[currentIndexElement].messages[indexMessageElement]"
                             >
                                 
                                 <div class="message-info">
@@ -195,7 +197,20 @@
                     @keyup.enter="createNewMessage(newChatMessage), createAnswerMessage()"
                     >
 
-                    <i class="fa-solid fa-microphone"></i>
+                    <!-- mostra quando la barra per inserire un messaggio è vuota -->
+                    <i 
+                        class="fa-solid fa-microphone"
+                        v-show="newChatMessage.length <= 0"
+                        >
+                    </i>
+                    
+                    <!-- mostra quando la barra per inserire un messaggio NON è vuota -->
+                    <i 
+                        class="fa-solid fa-paper-plane"
+                        v-show="newChatMessage.length > 0"
+                        @click="createNewMessage(newChatMessage), createAnswerMessage()"
+                        >
+                    </i>
 
                 </div>
                 
