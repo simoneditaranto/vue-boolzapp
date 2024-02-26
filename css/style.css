@@ -121,6 +121,11 @@ body{
 }
 
 #left-container #search-contact{    
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+
     padding: 10px;
 
     background-color: #FAFAFA;
@@ -128,6 +133,7 @@ body{
 
 #search-contact #search-container{
     display: flex;
+    flex-grow: 1;
 
     background-color: white;
 }
@@ -146,6 +152,14 @@ body{
     width: 100%;
 
     border: 1px solid #B1B1B1;
+}
+
+#search-contact .new-chat i{
+    font-size: 1.5em;
+
+    color: green;
+
+    cursor: pointer;
 }
 
 #left-container .contact-list{

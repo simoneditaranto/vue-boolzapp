@@ -333,14 +333,6 @@ createApp({
             })
 
         },
-
-        // // metodo che mi fa mostrare o meno la finestra delle impostazioni dei messaggi
-        // showInfoMessage(index) {
-            
-        //     this.indexMessageElement == index ? this.indexMessageElement = -1 : this.indexMessageElement = index;
-
-        // },
-
         // metodo che elminia il messaggio selezionato
         deleteMessage(index) {
 
@@ -384,6 +376,28 @@ createApp({
                 // elimino l'elemento selezionato   
                 this.contacts.splice(index, 1);
             }
+
+        },
+
+        // metodo per creare una nuova chat
+        createNewChat() {
+            
+            const newName = "Andrea";
+            const newImage = "./img/avatar_1.jpg"
+            const newContact = {
+                    name: newName,
+                    avatar: newImage,
+                    visible: true,
+                    stage: 'Hey there im using Bolzapp!',
+                    isOnline: false,
+                    isWritingMessage: false,
+                    settingsDelete: false,
+                    messages: [
+                       
+                    ],
+            }
+
+            this.contacts.push(newContact);
 
         },
 

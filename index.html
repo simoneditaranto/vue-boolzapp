@@ -74,6 +74,10 @@
 
                     </div>
 
+                    <div class="new-chat">
+                        <i class="fa-solid fa-square-plus" @click="createNewChat()"></i>
+                    </div>
+
                 </div>
 
                 <!-- lista dei contatti -->
@@ -143,7 +147,7 @@
                                 v-show="!contacts[currentIndexElement].isWritingMessage && !contacts[currentIndexElement].isOnline"
                             >
                                 Ultimo accesso alle: 
-                                {{contacts[currentIndexElement].messages.length > 0 ? formatDate(contacts[currentIndexElement].messages[contacts[currentIndexElement].messages.length - 1].date) :formatActualDate()}}
+                                {{contacts[currentIndexElement].messages.length > 0 ? formatDate(contacts[currentIndexElement].messages[contacts[currentIndexElement].messages.length - 1].date) : formatActualDate()}}
                             </span>
 
                             <span 
