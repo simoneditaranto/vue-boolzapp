@@ -13,6 +13,8 @@ createApp({
                     avatar: './img/avatar_1.jpg',
                     visible: true,
                     stage: 'Hey there im using Bolzapp!',
+                    isOnline: false,
+                    isWritingMessage: false,
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -36,6 +38,8 @@ createApp({
                     avatar: './img/avatar_2.jpg',
                     visible: true,
                     stage: 'Hey there im using Bolzapp!',
+                    isOnline: false,
+                    isWritingMessage: false,
                     messages: [
                         {
                             date: '20/03/2020 16:30:00',
@@ -59,6 +63,8 @@ createApp({
                     avatar: './img/avatar_3.jpg',
                     visible: true,
                     stage: 'Hey there im using Bolzapp!',
+                    isOnline: false,
+                    isWritingMessage: false,
                     messages: [
                         {
                             date: '28/03/2020 10:10:40',
@@ -82,6 +88,8 @@ createApp({
                     avatar: './img/avatar_4.jpg',
                     visible: true,
                     stage: 'Hey there im using Bolzapp!',
+                    isOnline: false,
+                    isWritingMessage: false,
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -100,6 +108,8 @@ createApp({
                     avatar: './img/avatar_5.jpg',
                     visible: true,
                     stage: 'Hey there im using Bolzapp!',
+                    isOnline: false,
+                    isWritingMessage: false,
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -118,6 +128,8 @@ createApp({
                     avatar: './img/avatar_6.jpg',
                     visible: true,
                     stage: 'Hey there im using Bolzapp!',
+                    isOnline: false,
+                    isWritingMessage: false,
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -141,6 +153,8 @@ createApp({
                     avatar: './img/avatar_7.jpg',
                     visible: true,
                     stage: 'Hey there im using Bolzapp!',
+                    isOnline: false,
+                    isWritingMessage: false,
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -159,6 +173,8 @@ createApp({
                     avatar: './img/avatar_8.jpg',
                     visible: true,
                     stage: 'Hey there im using Bolzapp!',
+                    isOnline: false,
+                    isWritingMessage: false,
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -236,8 +252,14 @@ createApp({
 
         // metodo che genera una risposta
         createAnswerMessage() {
+            // salvo l'indice del contatto corrente in una variabile per evitare (evito l'errore del cambio della chat)
             let index = this.currentIndexElement;
+
             if(this.sentNewMessage) {
+
+                // imposto a true la proprietà del contatto che mi dice se sta scrivendo un messaggio
+                this.contacts[index].isWritingMessage = true;
+
                 setTimeout(() => {
 
                     const actualDate = DateTime.now();
@@ -249,11 +271,24 @@ createApp({
                     }
     
                     this.contacts[index].messages.push(this.newChatMessage);
-    
+
                     this.newChatMessage = '';
 
-                }, 1000)
+                    // imposto a false la proprietà del contatto che mi dice se sta scrivendo un messaggio
+                    this.contacts[index].isWritingMessage = false;
+
+                    this.contacts[index].isOnline = true;
+
+                }, 2000);
             }
+
+            // tengo la scritta "online" dopo l'invio della risposta
+            setTimeout(() => {
+
+                this.contacts[index].isOnline = false;       
+
+            }, 4000);
+
         },
 
         // metodo che cambia il valore di "visible" a seconda di quello che l'utente scrive nella barra di ricerca
@@ -284,7 +319,22 @@ createApp({
             this.contacts[this.currentIndexElement].messages.splice(index, 1);
             this.indexMessageElement = -1;
 
-        }
+        },
+
+        // metodo che mi restituisce una data scritta "dd/mm/yyyy "hh:mm"
+        formatDate(date) {
+
+            return date.day + "/" + date.month + "/" + date.year + " " + date.hour + ":" + date.minute;
+            
+        },
+
+        // metodo che mi restituisci la data attuale scritta "dd/mm/yyyy "hh:mm"
+        formatActualDate() {
+
+            const now = DateTime.now();
+            return now.day + "/" + now.month + "/" + now.year + " " + now.hour + ":" + now.minute;
+
+        },
 
     },
 
@@ -302,6 +352,7 @@ createApp({
 
         this.dateNow = DateTime.now();
         this.dateNow = this.dateNow.toFormat("dd/MM/yyyy HH:mm:ss");
+        // console.log(DateTime.now())
 
     },
 

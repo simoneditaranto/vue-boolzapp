@@ -91,12 +91,20 @@
                             <span class="name">{{currentContact.name}}</span>
                             <span 
                                 class="last-message"
+                                v-show="!currentContact.isWritingMessage"
                             >
                                 {{
                                     <!-- se non ci sono più messaggi nella chat, mostra la proprietà "stage" (stato del contatto) -->
                                     currentContact.messages.length > 0 ?
                                     currentContact.messages[currentContact.messages.length - 1].message : currentContact.stage
                                 }}
+                            </span>
+
+                            <span
+                                class="last-message"
+                                v-show="currentContact.isWritingMessage"
+                            >
+                                Sta scrivendo...
                             </span>
                         </div>
 
@@ -130,7 +138,27 @@
                         <img :src="contacts[currentIndexElement].avatar" alt="">
                         <div class="contact-info">
                             <span>{{contacts[currentIndexElement].name}}</span>
-                            <span class="last-entry">Ultimo accesso oggi alle 12.00</span>
+                            <span 
+                                class="last-entry"
+                                v-show="!contacts[currentIndexElement].isWritingMessage && !contacts[currentIndexElement].isOnline"
+                            >
+                                {{contacts[currentIndexElement].messages.length > 0 ? "Ultimo accesso alle:" +  formatDate(contacts[currentIndexElement].messages[contacts[currentIndexElement].messages.length - 1].date) :formatActualDate()}}
+                            </span>
+
+                            <span 
+                                class="last-entry"
+                                v-show="contacts[currentIndexElement].isWritingMessage"
+                            >
+                                Sta scrivendo...
+                            </span>
+
+                            <span 
+                                class="last-entry"
+                                v-show="contacts[currentIndexElement].isOnline"
+                            >
+                                Online
+                            </span>
+
                         </div>
                     </div>
 
@@ -203,7 +231,7 @@
                         v-show="newChatMessage.length <= 0"
                         >
                     </i>
-                    
+
                     <!-- mostra quando la barra per inserire un messaggio NON è vuota -->
                     <i 
                         class="fa-solid fa-paper-plane"
