@@ -232,6 +232,47 @@ body{
     color: #979D9E;
 }
 
+#right-container .header-user .settings{
+    position: relative;
+}
+
+.fa-ellipsis-vertical{
+    cursor: pointer;
+}
+
+#right-container .header-user .settings .delete-chat{
+    position: absolute;
+    right: 0;
+    top: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    padding: 5px 0;
+
+    width: 200px;
+
+    border-radius: 5px;
+
+    background-color: white;
+
+    color: black;
+}
+
+
+#right-container .header-user .settings .delete-chat .all-messages:hover{
+    background-color: rgba(0, 0, 255, 0.5);
+
+    cursor: pointer;
+}
+
+#right-container .header-user .settings .delete-chat .all-chat:hover{
+    background-color: rgba(255, 0, 0, 0.5);
+
+    cursor: pointer;
+}
+
 /* contenitore chat */
 #right-container #chat-container{
     flex-grow: 1;
@@ -301,6 +342,8 @@ body{
 }
 
 #messages-container .message-text .message-panel{
+    /* display: none */
+
     position: absolute;
     right: 10px;
     top: 40px;
@@ -361,6 +404,29 @@ body{
     color: #6B7376;
 
     cursor: pointer;
+}
+
+
+#empty-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: calc(100% - 400px);
+
+    background-color: rgba(255, 255, 255, 0.5)
+}
+
+#empty-container .empty-text{
+    padding: 10px;
+
+    border-radius: 10px;
+
+    font-size: 1.5em;
+
+    background-color: rgb(4, 182, 4);
+
+    color: white;
 }
 /* fine sezione "right-container" */
 

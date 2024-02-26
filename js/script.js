@@ -213,7 +213,6 @@ createApp({
             // data attuale
             dateNow: 0,
 
-
         }
 
 
@@ -335,6 +334,30 @@ createApp({
             return now.day + "/" + now.month + "/" + now.year + " " + now.hour + ":" + now.minute;
 
         },
+
+        // metodo per rimuovere tutti i messaggi di una chat
+        deleteAllMessages(index) {
+
+            this.contacts[index].messages.splice(0);
+
+        },
+
+        // metodo per rimuovere l'intera chat
+        deleteAllChat(index) {
+
+            // se sto eliminando l'ultimo elemento
+            if(index == this.contacts.length - 1) {
+                // imposto l'indice dell'elemento corrente all'elemento precedente all'ultimo elemento
+                this.currentIndexElement -= 1;
+                // elimino l'ultimo elemento dall'array
+                this.contacts.pop();
+            } else {     
+                // elimino l'elemento selezionato   
+                this.contacts.splice(index, 1);
+            }
+
+        },
+
 
     },
 

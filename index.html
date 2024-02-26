@@ -129,20 +129,21 @@
             
 
             <!-- sezione chat (destra)  -->
-            <div id="right-container">
+            <div id="right-container" v-if="contacts.length > 0">
 
                 <!-- header -->
                 <div class="header-user">
 
                     <div class="user">
-                        <img :src="contacts[currentIndexElement].avatar" alt="">
+                        <img :src=contacts[currentIndexElement].avatar alt="">
                         <div class="contact-info">
                             <span>{{contacts[currentIndexElement].name}}</span>
                             <span 
                                 class="last-entry"
                                 v-show="!contacts[currentIndexElement].isWritingMessage && !contacts[currentIndexElement].isOnline"
                             >
-                                {{contacts[currentIndexElement].messages.length > 0 ? "Ultimo accesso alle:" +  formatDate(contacts[currentIndexElement].messages[contacts[currentIndexElement].messages.length - 1].date) :formatActualDate()}}
+                                Ultimo accesso alle: 
+                                {{contacts[currentIndexElement].messages.length > 0 ? formatDate(contacts[currentIndexElement].messages[contacts[currentIndexElement].messages.length - 1].date) :formatActualDate()}}
                             </span>
 
                             <span 
@@ -166,6 +167,24 @@
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <i class="fa-solid fa-paperclip"></i>
                         <i class="fa-solid fa-ellipsis-vertical"></i>
+
+                        <div class="delete-chat">
+                            <div 
+                                class="all-messages"
+                                @click="deleteAllMessages(currentIndexElement)"
+                            >
+                                Elimina tutti i messaggi
+                            </div>
+
+                            <div 
+                                class="all-chat"
+                                @click="deleteAllChat(currentIndexElement)"
+                            >
+                                Elimina conversazione
+                            </div>
+
+                        </div>
+
                     </div>
 
                 </div>
@@ -194,7 +213,7 @@
                            
                             <div 
                                 class="message-panel"
-                                v-show="currentMessage == contacts[currentIndexElement].messages[indexMessageElement]"
+                                v-show="index == indexMessageElement"
                             >
                                 
                                 <div class="message-info">
@@ -242,6 +261,9 @@
 
                 </div>
                 
+            </div>
+            <div id="empty-container" v-else>
+                <div class="empty-text">Inizia una nuova chat</div>
             </div>
             
         </div>
