@@ -314,6 +314,10 @@ body{
     z-index: 1;
 }
 
+/* #messages-container .message-text .message-panel.view{
+    display: block;
+} */
+
 
 #messages-container .message-text .message-panel div:first-of-type{
     margin-bottom: 5px;

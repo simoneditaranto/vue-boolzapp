@@ -80,8 +80,8 @@
                 <div class="contact-list">
 
                     <div 
-                    v-for="(currentContact, index) in contacts" 
-                    v-show="currentContact.visible"           
+                    v-for="(currentContact, index) in contacts"            
+                    v-show="currentContact.visible"
                     class="contact"
                     :class="currentIndexElement == index ? 'active' : ''"
                     @click="indexNumber(index)"
@@ -89,17 +89,26 @@
                         <img :src=contacts[index].avatar :alt=contacts[index].name>
                         <div class="contact-info">
                             <span class="name">{{currentContact.name}}</span>
-                            <span class="last-message">
-                                {{ 
-                                    currentContact.messages[currentContact.messages.length - 1].message 
+                            <span 
+                                class="last-message"
+                            >
+                                {{
+                                    currentContact.messages.length > 0 ?
+                                    currentContact.messages[currentContact.messages.length - 1].message : currentContact.stage
                                 }}
                             </span>
                         </div>
 
-                        <div class="message-time">
+                        <div 
+                            class="message-time"
+                            v-if="currentContact.messages.length > 0"
+                            >
                             {{
                                 `${currentContact.messages[currentContact. messages.length - 1].date.hour}:${currentContact.messages[currentContact. messages.length - 1].date.minute < 10 ? '0' : ''}${currentContact.messages[currentContact. messages.length - 1].date.minute}`
                             }}
+                            <!-- {{
+                                `${dateNow.diff(currentContact.messages[currentContact. messages.length - 1].date)}`
+                            }} -->
                         </div>
 
                     </div>

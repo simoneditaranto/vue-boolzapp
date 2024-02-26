@@ -12,6 +12,7 @@ createApp({
                     name: 'Michele',
                     avatar: './img/avatar_1.jpg',
                     visible: true,
+                    stage: 'Hey there im using Bolzapp!',
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -34,6 +35,7 @@ createApp({
                     name: 'Fabio',
                     avatar: './img/avatar_2.jpg',
                     visible: true,
+                    stage: 'Hey there im using Bolzapp!',
                     messages: [
                         {
                             date: '20/03/2020 16:30:00',
@@ -56,6 +58,7 @@ createApp({
                     name: 'Samuele',
                     avatar: './img/avatar_3.jpg',
                     visible: true,
+                    stage: 'Hey there im using Bolzapp!',
                     messages: [
                         {
                             date: '28/03/2020 10:10:40',
@@ -78,6 +81,7 @@ createApp({
                     name: 'Alessandro B.',
                     avatar: './img/avatar_4.jpg',
                     visible: true,
+                    stage: 'Hey there im using Bolzapp!',
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -95,6 +99,7 @@ createApp({
                     name: 'Alessandro L.',
                     avatar: './img/avatar_5.jpg',
                     visible: true,
+                    stage: 'Hey there im using Bolzapp!',
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -112,6 +117,7 @@ createApp({
                     name: 'Claudia',
                     avatar: './img/avatar_6.jpg',
                     visible: true,
+                    stage: 'Hey there im using Bolzapp!',
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -134,6 +140,7 @@ createApp({
                     name: 'Federico',
                     avatar: './img/avatar_7.jpg',
                     visible: true,
+                    stage: 'Hey there im using Bolzapp!',
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -151,6 +158,7 @@ createApp({
                     name: 'Davide',
                     avatar: './img/avatar_8.jpg',
                     visible: true,
+                    stage: 'Hey there im using Bolzapp!',
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -186,7 +194,9 @@ createApp({
             // creo un variabile che mi indica l'indice del messaggio a su cui voglio mostrare la finestrina delle impostazioni
             indexMessageElement: -1,
 
-            
+            // data attuale
+            dateNow: 0,
+
 
         }
 
@@ -208,7 +218,6 @@ createApp({
             if(message.trim() != 0){
 
                 const actualDate = DateTime.now();
-                console.log(actualDate)
 
                 // creo un oggetto di tipo messaggio
                 this.newChatMessage = {
@@ -232,7 +241,6 @@ createApp({
                 setTimeout(() => {
 
                     const actualDate = DateTime.now();
-                    console.log(actualDate)
     
                     this.newChatMessage = {
                         date: actualDate,
@@ -263,37 +271,48 @@ createApp({
 
         },
 
-        // metodo che mi fa mostrare o meno la finestra delle impostazione dei messaggi
+        // metodo che mi fa mostrare o meno la finestra delle impostazioni dei messaggi
         showInfoMessage(index) {
-
-            this.indexMessageElement == index ? this.indexMessageElement = -1 : this.indexMessageElement = index;
+            let i = this.currentIndexElement;
+            
+            if(this.contacts[i].messages.indexOf(this.contacts[i].messages[this.indexMessageElement]) != index && i == this.currentIndexElement) {
+                this.indexMessageElement = index;
+                i = -1;
+            } else if(this.indexMessageElement == index) {
+                this.indexMessageElement = -1;
+            }
+            // this.contacts[i].messages.indexOf(this.contacts[i].messages[this.indexMessageElement]) == index ? this.indexMessageElement = -1 : this.indexMessageElement = index;
+            // this.contacts[i].messages.indexOf(this.contacts[i].messages[this.indexMessageElement]);
+            // console.log("1", this.contacts[i].messages.indexOf(this.contacts[i].messages[this.indexMessageElement]))
+            // console.log("2", index)
 
         },
 
         // metodo che elminia il messaggio selezionato
         deleteMessage(index) {
+
             this.contacts[this.currentIndexElement].messages.splice(index, 1);
             this.indexMessageElement = -1;
+
         }
-
-
 
     },
 
     mounted() {
+
         // allo start della pagina, viene visualizzato il primo elemento della lista dei contatti
         this.indexNumber(0);
 
-
+        // allo start della pagina prendo tutte le date presenti nell'array e le converto in date gestibili dalla libreria luxon
         this.contacts.forEach(current => {
             current.messages.forEach(currentMessage => {
                 currentMessage.date = DateTime.fromFormat(currentMessage.date, "dd/MM/yyyy HH:mm:ss");
-                // console.log(currentMessage.date.hour)
             })
         })
 
+        this.dateNow = DateTime.now();
+        this.dateNow = this.dateNow.toFormat("dd/MM/yyyy HH:mm:ss");
 
     },
-
 
 }).mount("#app");
