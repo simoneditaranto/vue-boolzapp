@@ -31,7 +31,7 @@
             >
 
                 <!-- profilo utente -->
-                <div class="header-user">
+                <div class="header-user" :class="styleMode">
 
                     <div class="user">
                         <img src="./img/avatar_io.jpg" alt="">
@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="settings">
-                        <i class="fa-solid fa-circle-notch"></i>
+                        <i class="fa-solid fa-circle-notch" @click="darkModeOn()"></i>
                         <i class="fa-solid fa-message"></i>
                         <i class="fa-solid fa-ellipsis-vertical"></i>
                     </div>
@@ -61,7 +61,7 @@
                 </div>
 
                 <!-- barra di ricerca dei contatti-->
-                <div id="search-contact">
+                <div id="search-contact" :class="styleMode">
 
                     <div id="search-container">
 
@@ -83,7 +83,7 @@
                 </div>
 
                 <!-- lista dei contatti -->
-                <div class="contact-list">
+                <div class="contact-list" :class="styleMode">
 
                     <div 
                         v-for="(currentContact, index) in contacts"            
@@ -135,7 +135,7 @@
             <div id="right-container" v-if="contacts.length > 0" :class="displayType">
 
                 <!-- header -->
-                <div class="header-user">
+                <div class="header-user" :class="styleMode">
 
                     <div class="user">
                         <i class="fa-solid fa-chevron-left" @click="showContactList()"></i>
@@ -243,7 +243,7 @@
                 </div>
 
                 <!-- invia un messaggio -->
-                <div id="send-message">
+                <div id="send-message" :class="styleMode">
 
                     <i class="fa-regular fa-face-smile"></i>
 

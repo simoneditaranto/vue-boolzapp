@@ -242,8 +242,12 @@ createApp({
             // data attuale
             dateNow: 0,
 
+            // variabili utilizzare per le funzioni responsive
             displayType: '',
             displayNone: '',
+
+            // variabile per la dark/light mode
+            styleMode: '',
 
         }
 
@@ -416,11 +420,16 @@ createApp({
            this.displayNone = 'none';
         },
 
+        // metodo per visualizzare la lista delle chat (responsive)
         showContactList() {
             this.displayType = 'none';
             this.displayNone = 'active';
         },
 
+        // metodo per cambiare in dark mode e light mode
+        darkModeOn() {
+            this.styleMode == 'lightMode' ? this.styleMode = 'darkMode' : this.styleMode = 'lightMode';
+        },
 
     },
 
@@ -435,6 +444,8 @@ createApp({
                 currentMessage.date = DateTime.fromFormat(currentMessage.date, "dd/MM/yyyy HH:mm:ss");
             })
         })
+
+        this.styleMode = 'lightMode';
 
         this.dateNow = DateTime.now();
         this.dateNow = this.dateNow.toFormat("dd/MM/yyyy HH:mm:ss");

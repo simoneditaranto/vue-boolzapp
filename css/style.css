@@ -30,7 +30,7 @@
 /* elementi comuni alla pagina */
 
 body{
-    background-color: #D7DBD7;
+    /* background-color: #D7DBD7; */
 
     font-family: sans-serif;
 }
@@ -49,6 +49,7 @@ body{
 .header-user .user{
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
 .header-user .user img{
@@ -81,6 +82,10 @@ body{
     border-right: 1px solid #B1B1B1;
 
     overflow: hidden;
+}
+
+#left-container .header-user .settings .fa-circle-notch{
+    cursor: pointer;
 }
 
 #left-container #notifications{    
@@ -128,14 +133,14 @@ body{
 
     padding: 10px;
 
-    background-color: #FAFAFA;
+    /* background-color: #FAFAFA; */
 }
 
 #search-contact #search-container{
     display: flex;
     flex-grow: 1;
 
-    background-color: white;
+    /* background-color: white; */
 }
 
 #search-container i{
@@ -165,7 +170,7 @@ body{
 #left-container .contact-list{
     flex-grow: 1;
 
-    background-color: white;
+    /* background-color: white; */
 
     overflow-y: auto;
 }
@@ -400,7 +405,7 @@ body{
 
     padding: 10px 0;
 
-    background-color: #F3EEEA;
+    /* background-color: #F3EEEA; */
 }
 
 #send-message input{
@@ -448,11 +453,21 @@ body{
 }
 /* fine sezione "right-container" */
 
+.darkMode{
+    background-color: rgb(23, 15, 15);
+    color: white;
+}
+
+.lightMode{
+    background-color: white;
+    color: black;
+}
+
 
 
 
 /* RESPONSIVE */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 780px) {
 
     .container{
         translate: 0;
