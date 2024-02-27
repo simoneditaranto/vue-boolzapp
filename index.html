@@ -26,7 +26,9 @@
         <div id="app" class="container">
 
             <!-- sezione contatti (sinistra) -->
-            <div id="left-container">
+            <div id="left-container" 
+                :class="displayNone"
+            >
 
                 <!-- profilo utente -->
                 <div class="header-user">
@@ -84,11 +86,11 @@
                 <div class="contact-list">
 
                     <div 
-                    v-for="(currentContact, index) in contacts"            
-                    v-show="currentContact.visible"
-                    class="contact"
-                    :class="currentIndexElement == index ? 'active' : ''"
-                    @click="indexNumber(index)"
+                        v-for="(currentContact, index) in contacts"            
+                        v-show="currentContact.visible"
+                        class="contact"
+                        :class="currentIndexElement == index ? 'active' : ''"
+                        @click="indexNumber(index), showContactChat(index)"
                     >
                         <img :src=contacts[index].avatar :alt=contacts[index].name>
                         <div class="contact-info">
@@ -120,9 +122,6 @@
                             {{
                                 `${currentContact.messages[currentContact. messages.length - 1].date.hour}:${currentContact.messages[currentContact. messages.length - 1].date.minute < 10 ? '0' : ''}${currentContact.messages[currentContact. messages.length - 1].date.minute}`
                             }}
-                            <!-- {{
-                                `${dateNow.diff(currentContact.messages[currentContact. messages.length - 1].date)}`
-                            }} -->
                         </div>
 
                     </div>
@@ -133,12 +132,14 @@
             
 
             <!-- sezione chat (destra)  -->
-            <div id="right-container" v-if="contacts.length > 0">
+            <div id="right-container" v-if="contacts.length > 0" :class="displayType">
 
                 <!-- header -->
                 <div class="header-user">
 
                     <div class="user">
+                        <i class="fa-solid fa-chevron-left" @click="showContactList()"></i>
+
                         <img :src=contacts[currentIndexElement].avatar alt="">
                         <div class="contact-info">
                             <span>{{contacts[currentIndexElement].name}}</span>
@@ -185,7 +186,7 @@
 
                             <div 
                                 class="all-chat"
-                                @click="deleteAllChat(currentIndexElement)"
+                                @click="deleteAllChat(currentIndexElement), showContactList()"
                             >
                                 Elimina conversazione
                             </div>
@@ -270,7 +271,7 @@
                 
             </div>
             <div id="empty-container" v-else>
-                <div class="empty-text">Inizia una nuova chat</div>
+                <div class="empty-text" @click="createNewChat">Inizia una nuova chat</div>
             </div>
             
         </div>

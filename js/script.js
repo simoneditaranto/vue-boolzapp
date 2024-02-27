@@ -242,6 +242,9 @@ createApp({
             // data attuale
             dateNow: 0,
 
+            displayType: '',
+            displayNone: '',
+
         }
 
 
@@ -333,6 +336,7 @@ createApp({
             })
 
         },
+
         // metodo che elminia il messaggio selezionato
         deleteMessage(index) {
 
@@ -377,6 +381,11 @@ createApp({
                 this.contacts.splice(index, 1);
             }
 
+            // se l'indice dell'elemento corrente arriva ad essere minore di 0 (cioè ho eliminato tutti gli elementi dell'array), lo rimetto a 0
+            if(this.currentIndexElement < 0) {
+                this.currentIndexElement = 0;
+            }
+
         },
 
         // metodo per creare una nuova chat
@@ -399,6 +408,17 @@ createApp({
 
             this.contacts.push(newContact);
 
+        },
+
+        // metodo per visualizzare la chat attiva (responsive)
+        showContactChat(index) {
+           this.displayType = 'active';
+           this.displayNone = 'none';
+        },
+
+        showContactList() {
+            this.displayType = 'none';
+            this.displayNone = 'active';
         },
 
 
