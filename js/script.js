@@ -249,6 +249,9 @@ createApp({
             // variabile per la dark/light mode
             styleMode: '',
 
+            // variabile per lo startPage
+            startPage: '',
+
         }
 
 
@@ -445,10 +448,17 @@ createApp({
             })
         })
 
+        // allo start la pagine parte con il tema chiaro
         this.styleMode = 'lightMode';
 
+        // allo start mi salvo la data attuale
         this.dateNow = DateTime.now();
         this.dateNow = this.dateNow.toFormat("dd/MM/yyyy HH:mm:ss");
+
+        // allo start della pagina viene visualizzata per un secondo una splash di benvenuto
+        setTimeout(() => {
+            this.startPage = 'none';
+        }, 1000);
 
     },
 

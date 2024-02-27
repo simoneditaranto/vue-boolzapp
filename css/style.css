@@ -13,24 +13,65 @@
 
 /* container principale */
 .container{
-    height: 80vh;
-    /* test */
+    /* display: none; */
+    display: flex;
     
     margin: auto ;
-
-    display: flex;
-
+    
     max-width: 1200px;
-
+    height: 80vh;
+    
     translate: 0 -100px;
 }
 /* container principale */
+
+#welcome{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    margin: 0 auto;
+
+    width: 100vw;
+    height: 100vh;
+
+    background-color: #D7DBD7;
+
+    z-index: 2;
+}
+
+#welcome.none{
+    display: none;
+}
+
+#welcome .welcome-text{
+    font-size: 1.5em;
+
+    color: #2E45CC;
+}
+
+#welcome img{
+    width: 150px;
+
+    padding: 10px;
+
+    border-radius: 8px;
+
+    background-color: #2E45CC;
+}
 
 
 /* elementi comuni alla pagina */
 
 body{
-    /* background-color: #D7DBD7; */
+    background-color: #D7DBD7;
 
     font-family: sans-serif;
 }
@@ -78,6 +119,7 @@ body{
     flex-direction: column;
 
     width: 400px;
+    height: 100%;
 
     border-right: 1px solid #B1B1B1;
 
@@ -132,15 +174,11 @@ body{
     align-items: center;
 
     padding: 10px;
-
-    /* background-color: #FAFAFA; */
 }
 
 #search-contact #search-container{
     display: flex;
     flex-grow: 1;
-
-    /* background-color: white; */
 }
 
 #search-container i{
@@ -169,8 +207,6 @@ body{
 
 #left-container .contact-list{
     flex-grow: 1;
-
-    /* background-color: white; */
 
     overflow-y: auto;
 }
@@ -236,6 +272,7 @@ body{
     justify-content: space-between;
 
     width: calc(100% - 400px);
+    height: 100%;
 }
 
 #right-container .header-user .user{
@@ -365,8 +402,6 @@ body{
 }
 
 #messages-container .message-text .message-panel{
-    /* display: none */
-
     position: absolute;
     right: 10px;
     top: 40px;
@@ -379,11 +414,6 @@ body{
 
     z-index: 1;
 }
-
-/* #messages-container .message-text .message-panel.view{
-    display: block;
-} */
-
 
 #messages-container .message-text .message-panel div:first-of-type{
     margin-bottom: 5px;
@@ -404,8 +434,6 @@ body{
     align-items: center;
 
     padding: 10px 0;
-
-    /* background-color: #F3EEEA; */
 }
 
 #send-message input{
@@ -453,6 +481,8 @@ body{
 }
 /* fine sezione "right-container" */
 
+
+/* dark/light mode */
 .darkMode{
     background-color: rgb(23, 15, 15);
     color: white;
@@ -463,10 +493,15 @@ body{
     color: black;
 }
 
+/* fine dark/light mode */
 
 
 
-/* RESPONSIVE */
+
+/*****************************************/
+/************* RESPONSIVE ****************/
+/*****************************************/
+
 @media screen and (max-width: 780px) {
 
     .container{

@@ -21,9 +21,14 @@
         <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
 
         <div id="header-back"></div>
-
+        
         <!-- container principale -->
         <div id="app" class="container">
+            
+            <div id="welcome" :class="startPage">
+                <div class="welcome-text">Benvnuto su Boolzap</div>
+                <img src="./img/boolean-logo.png" alt="">
+            </div>
 
             <!-- sezione contatti (sinistra) -->
             <div id="left-container" 
