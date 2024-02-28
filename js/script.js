@@ -252,6 +252,9 @@ createApp({
             // variabile per lo startPage
             startPage: '',
 
+            // imposto una data vecchia per effettuare un controllo per ordinare l'array di contatti in base alla data maggiore (dell'ultimo messaggio ricevuto)
+            dateLower: '01/01/2000 00:00:00',
+
         }
 
 
@@ -282,9 +285,12 @@ createApp({
 
                 this.contacts[this.currentIndexElement].messages.push(this.newChatMessage);
 
+                // this.reorderContacsToDate();
+
                 this.sentNewMessage = true;
                 
                 this.newChatMessage = '';
+
             }
         },
 
@@ -316,6 +322,9 @@ createApp({
                     this.contacts[index].isWritingMessage = false;
 
                     this.contacts[index].isOnline = true;
+
+                    // quando genero un messaggio di risposta aggiorno l'ordine del mio array
+                    this.reorderContacsToDate();
 
                 }, 2000);
             }
@@ -434,12 +443,52 @@ createApp({
             this.styleMode == 'lightMode' ? this.styleMode = 'darkMode' : this.styleMode = 'lightMode';
         },
 
+        reorderContacsToDate() {
+            // creo un array vuoto di appoggio
+            const newContacts = [];
+            
+            // prendo la data dell'ultimo messaggio del primo elemento dei contatti (per il confronto)
+            let dateLonger = this.contacts[0].messages[this.contacts[0].messages.length-1].date;
+            // creo un utente d'appoggio (che sarà l'utente con data maggiore)
+            let userDateLonger;
+            
+            // ripeti per la lunghezza dell'array di contatti 
+            let contactsLenght = this.contacts.length;
+            for(let i = 0; i < contactsLenght; i++) {
+                
+                // per ogni contatto
+                this.contacts.forEach(current => {
+                    // se la data dell'ultimo messaggio nell'array di messaggi è maggiore della data usata per il confronto
+                    if(current.messages[current.messages.length-1].date > dateLonger) {
+                        // allora la data maggiore diventa questa
+                        dateLonger = current.messages[current.messages.length-1].date;
+                        // e l'utente con ultimo messaggio con data maggiore diventa il corrente
+                        userDateLonger = current;
+                        
+                    }
+                })
+                // la data maggiore diventa la data usata per il confronto
+                dateLonger = this.dateLower;
+                // elimino l'utente con data maggiore
+                this.contacts.splice(this.contacts.indexOf(userDateLonger), 1);
+                // lo aggiungo all'array di appoggio
+                newContacts.push(userDateLonger);
+
+            }
+            // il mio array originale diventa l'array di appoggio che è uguale ma ordinato
+            this.contacts = newContacts;
+        },
+
+
     },
 
     mounted() {
 
         // allo start della pagina, viene visualizzato il primo elemento della lista dei contatti
         this.indexNumber(0);
+
+        // allo start riordino il mio array in base alla data dell'ultimo messaggio maggiore
+        this.reorderContacsToDate();
 
         // allo start della pagina prendo tutte le date presenti nell'array e le converto in date gestibili dalla libreria luxon
         this.contacts.forEach(current => {
@@ -448,8 +497,12 @@ createApp({
             })
         })
 
+        this.dateLower = DateTime.fromFormat(this.dateLower, "dd/MM/yyyy HH:mm:ss")
+
         // allo start la pagine parte con il tema chiaro
         this.styleMode = 'lightMode';
+        
+        
 
         // allo start mi salvo la data attuale
         this.dateNow = DateTime.now();
